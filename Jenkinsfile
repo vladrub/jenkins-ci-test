@@ -22,7 +22,7 @@ pipeline {
 
                     echo responseCode
                     
-                    if (responseCode != 201) {
+                    if (responseCode != 200) {
                         sh 'exit 1'
                     }
                 }
