@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker run --name application -d'
+                sh 'docker build -t application .'
             }
         }
     }
