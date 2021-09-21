@@ -23,7 +23,7 @@ pipeline {
                     echo responseCode
                     
                     if (responseCode != 200) {
-                        sh 'exit(0)'
+                        sh 'exit 0'
                     }
                 }
             }
