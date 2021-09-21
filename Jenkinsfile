@@ -18,12 +18,29 @@ pipeline {
                 script {
                     final String url = "130.193.43.88:9889"
 
-                    final Integer responseCode = sh(script: " curl -s -o /dev/null -w %{http_code} $url", returnStdout: true).trim()
+                    final Integer responseCode = sh(script: "curl -s -o /dev/null -w %{http_code} $url", returnStdout: true).trim()
                     
                     if (responseCode == 200) {
                         echo "SmokeTest прошел успешно!"
                     } else {
                         echo responseCode
+                        sh 'exit 1'
+                    }
+                }
+            }
+        }
+        stage("FingerprintTest") {
+            steps {
+                script {
+                    final String url = "130.193.43.88:9889"
+
+                    final String curlFingerprint = sh(script: "wget -q -O- $url | md5sum", returnStdout: true).trim()
+                    final String fileFingerprint = sh(script: "md5sum app/index.html", returnStdout: true).trim()
+                    
+                    if (curlFingerprint == fileFingerprint) {
+                        echo "FingerprintTest прошел успешно!"
+                    } else {
+                        echo "curlFingerprint: $curlFingerprint и fileFingerprint: $fileFingerprint не равны"
                         sh 'exit 1'
                     }
                 }
