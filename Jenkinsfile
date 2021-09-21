@@ -19,10 +19,11 @@ pipeline {
                     final String url = "130.193.43.88:9889"
 
                     final String responseCode = sh(script: " curl -s -o /dev/null -w %{http_code} $url", returnStdout: true).trim()
-
-                    echo responseCode
                     
-                    if (responseCode != 200) {
+                    if (responseCode == 200) {
+                        echo "SmokeTest прошел успешно!"
+                    } else {
+                        echo responseCode
                         sh 'exit 1'
                     }
                 }
