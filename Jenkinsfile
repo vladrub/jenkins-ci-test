@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'docker run -dp 8080:80 application'
+                sh 'docker run -dp 9889:80 application'
             }
         }
     }
