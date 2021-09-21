@@ -20,7 +20,7 @@ pipeline {
 
                     final Integer responseCode = sh(script: " curl -s -o /dev/null -w %{http_code} $url", returnStdout: true).trim()
                     
-                    if (responseCode == 200) {
+                    if (responseCode == 201) {
                         echo "SmokeTest прошел успешно!"
                     } else {
                         echo responseCode
