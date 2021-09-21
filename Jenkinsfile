@@ -34,8 +34,8 @@ pipeline {
                 script {
                     final String url = "130.193.43.88:9889"
 
-                    final String curlFingerprint = sh(script: "wget -q -O- $url | md5sum | awk \"{ print $1 }\"", returnStdout: true).trim()
-                    final String fileFingerprint = sh(script: "md5sum app/index.html | awk \"{ print $1 }\"", returnStdout: true).trim()
+                    final String curlFingerprint = sh(script: "wget -q -O- $url | md5sum | cut -c 1-32", returnStdout: true).trim()
+                    final String fileFingerprint = sh(script: "md5sum app/index.html | cut -c 1-32", returnStdout: true).trim()
                     
                     if (curlFingerprint == fileFingerprint) {
                         echo "FingerprintTest прошел успешно!"
