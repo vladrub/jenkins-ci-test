@@ -18,7 +18,7 @@ pipeline {
                 script {
                     final String url = "130.193.43.88:9889"
 
-                    final String responseCode = sh(script: " curl -s -o /dev/null -w %{http_code} $url", returnStdout: true).trim()
+                    final Integer responseCode = sh(script: " curl -s -o /dev/null -w %{http_code} $url", returnStdout: true).trim()
                     
                     if (responseCode == 200) {
                         echo "SmokeTest прошел успешно!"
