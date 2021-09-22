@@ -50,7 +50,7 @@ pipeline {
     
      post {
         success {            
-            telegramSend '${currentBuild.projectName} ${currentBuild.displayName} ${currentBuild.result}'
+            telegramSend('${currentBuild.projectName} ${currentBuild.displayName} ${currentBuild.result}')
         }
         aborted {             
             telegramSend(message: "aborted")
