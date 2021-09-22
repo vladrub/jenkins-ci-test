@@ -50,13 +50,13 @@ pipeline {
     
      post {
         success {            
-            telegramSend(message: '${currentBuild.projectName} ${currentBuild.displayName} ${currentBuild.result}')
+            telegramSend(message: 'Проект собрался успешно!')
         }
         aborted {             
-            telegramSend(message: "aborted")
+            telegramSend(message: "Отмена сборки проекта!")
         }
         failure {
-            telegramSend(message: "failure")
+            telegramSend(message: "Ошибка при сборки проекта!")
         }
     }
 }
