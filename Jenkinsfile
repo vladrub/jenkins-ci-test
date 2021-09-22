@@ -46,6 +46,11 @@ pipeline {
                 }
             }
         }
+        stage("DeleteContainer") {
+            steps {
+                sh 'docker ps -f name=application -q | xargs --no-run-if-empty docker container stop'
+            }
+        }
     }
     
      post {
