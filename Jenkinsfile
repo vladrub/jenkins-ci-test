@@ -50,13 +50,13 @@ pipeline {
     
      post {
         success {            
-            telegramSend("success");
+            telegramSend(message: "success");
         }
         aborted {             
-            telegramSend("aborted");
+            telegramSend(message: "aborted");
         }
         failure {
-            telegramSend("failure");
+            telegramSend(message: "failure");
         }
     }
 }
