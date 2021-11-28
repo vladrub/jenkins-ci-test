@@ -1,0 +1,20 @@
+services:
+  # Server 1 container
+  nginx1:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./app1:/usr/share/nginx/html
+    ports:
+      - 7080:80
+  
+  # Server 2 container
+  nginx2:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./app2:/usr/share/nginx/html
+    ports:
+      - 7081:80
